@@ -42,9 +42,9 @@ Finally, I decided to use combination of R, S, L to create a thresholded binary 
 
 ![alt text][image3]
 
-### 2. Perspective transform
+### 3. Perspective transform
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+Here I needed to have a top view of the road to calculate the radius of curvature. I defined first source and destination points int the following manner:
                   
 ```python
 src = np.float32([[0.156*img_shape[1], img_shape[0]],
@@ -71,19 +71,19 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ![alt text][image4]
 
-#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+#### 4. Lane lines as polynomial function
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+As mentioned in the project tutorial, I used image histogram to difine the start position of the left and right lane lines. After that, I used windows starting from the start points to detect lane line pixels from bottom to top. Each window is a reference for the next one to define the search area. After detecting all pixels from bottom to top, I used them as input to `polyfit()` to define the polynomial function for each lane line. Here you can check the result:
 
 ![alt text][image5]
 
-#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+#### 5. Radius of Curvature
 
-I did this in lines # through # in my code in `my_other_file.py`
+To calculate the curvature radius for each lane line function, I had to convert the pixels dimension to the real world dimension. Each pixel represents `30/720` m in the y direction and `3.7/700` m in the x direction. After this conversion, I have the real world x,y points so I can calculate the radius of cruvature for each lane line.
 
-#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+#### 6. Plot lane area
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+After defining the lane lines and the `x,y` coordinates in real world, I fill the area between those 2 lines with green color to visualize the final results.
 
 ![alt text][image6]
 
