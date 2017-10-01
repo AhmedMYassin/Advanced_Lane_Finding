@@ -3,12 +3,14 @@
 [//]: # (Image References)
 
 [image1]: ./output_images/Distorted_Undistorted.jpg "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
+[image2]: ./output_images/Undistorted_image.jpg "Road Transformed"
+[image3]: ./output_images/Pipeline_result.jpg "Binary Example"
 [image4]: ./output_images/Perspective_Transform.jpg "Warp Example"
 [image5]: ./output_images/lane_lines.jpg "Fit Visual"
 [image6]: ./output_images/Road_Curvature.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
+[image7]: ./output_images/Color_Space.jpg "Color Space"
+[image8]: ./output_images/Grad.jpg "Gradient"
 
 ### Camera Calibration
 
@@ -20,14 +22,23 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 ### Pipeline
 
-#### 1. Provide an example of a distortion-corrected image.
+#### 1. Undistortion
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
+Here I used the calibration parameters to undistort one of the test images:
+
 ![alt text][image2]
 
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+#### 2. Color Space and Gradient
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I strated with visualizing the effect of different color spaces to decide which one to select or use combination. R in RGB and S & L in HSL were the best so I decided to use combination of them.
+
+![alt text][image7]
+
+Then I checked the gradient effect to decide which one gradient direction should I select. The gradient in x-direction was the best but it wasn't as good as any of the results of color space tests. 
+
+![alt text][image8]
+
+Finally, I decided to use combination of R, S, L to create a thresholded binary image in `Detect_lane_lines()`. You can here check the original image and the resulted binary image
 
 ![alt text][image3]
 
