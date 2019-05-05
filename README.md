@@ -93,7 +93,7 @@ After defining the lane lines and the `x,y` coordinates in real world, I fill th
 
 [Here](./project_video_output.mp4) is a link to the project video after processing. In video processing, I used batches of 10 frames to calculate the average radius of curvature and the lane lines equation to keep them smooth as mush as possible.
 
-I also processed another 2 videos (challenge and hard challenge) but the results wasn't good enough but you can check them from [here](./challenge_video.mp4) and [here](./harder_challenge_video.mp4) 
+I also processed another 2 videos (challenge and hard challenge) but the results wasn't good enough but you can check them from [here](./challenge_video_output.mp4) and [here](./harder_challenge_video_output.mp4) 
 
 
 ### Discussion
